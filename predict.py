@@ -17,7 +17,7 @@ config = vars(args)
 
 # define constants
 EVALUE = 1e-20
-MODELPATH = os.path.dirname(__file__)+"/models/"
+MODELPATH = os.path.dirname(__file__)+"/models/M_"
 
 # set up all available models
 traits = {
@@ -54,15 +54,13 @@ pfams = set(pfams)
 # if specific trait has been selected, reduce to this
 if trait != 'all': 
     traits = {trait: traits[trait]}
-else:
-    del traits['all']
 
 # go through all remaining traits
 for trait in traits:
     label = traits[trait]
 
     # load model
-    dump = pickle.load(open(MODELPATH+trait + "_data.p", "rb"))
+    dump = pickle.load(open(MODELPATH+trait + ".p", "rb"))
     clf = dump.get('model')
     categories = dump.get("categories")
     strains = dump.get('strains')
